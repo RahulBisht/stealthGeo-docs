@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     const [content, setContent] = useState<string>('');
 
     useEffect(() => {
-        fetch('/docs/PRIVACY_POLICY.md')
+        fetch(`${import.meta.env.BASE_URL}docs/PRIVACY_POLICY.md`)
             .then(response => response.text())
             .then(text => setContent(text))
             .catch(error => console.error('Error loading privacy policy:', error));

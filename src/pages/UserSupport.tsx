@@ -6,7 +6,7 @@ export default function UserSupport() {
     const [content, setContent] = useState<string>('');
 
     useEffect(() => {
-        fetch('/docs/USER_SUPPORT.md')
+        fetch(`${import.meta.env.BASE_URL}docs/USER_SUPPORT.md`)
             .then(response => response.text())
             .then(text => setContent(text))
             .catch(error => console.error('Error loading user support:', error));
