@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
@@ -23,49 +24,7 @@ export default function PrivacyPolicy() {
 
                 <div className="policy-content card-glass">
                     <div className="markdown-content">
-                        {content.split('\n').map((line, index) => {
-                            // Headers
-                            if (line.startsWith('# ')) {
-                                return <h1 key={index}>{line.substring(2)}</h1>;
-                            }
-                            if (line.startsWith('## ')) {
-                                return <h2 key={index}>{line.substring(3)}</h2>;
-                            }
-                            if (line.startsWith('### ')) {
-                                return <h3 key={index}>{line.substring(4)}</h3>;
-                            }
-                            if (line.startsWith('#### ')) {
-                                return <h4 key={index}>{line.substring(5)}</h4>;
-                            }
-
-                            // Bold text
-                            if (line.startsWith('**') && line.endsWith('**')) {
-                                return <p key={index}><strong>{line.slice(2, -2)}</strong></p>;
-                            }
-
-                            // List items
-                            if (line.startsWith('- ')) {
-                                return <li key={index}>{line.substring(2)}</li>;
-                            }
-
-                            // Table rows (simple handling)
-                            if (line.startsWith('|')) {
-                                return <div key={index} className="table-row">{line}</div>;
-                            }
-
-                            // Horizontal rule
-                            if (line === '---') {
-                                return <hr key={index} />;
-                            }
-
-                            // Empty lines
-                            if (line.trim() === '') {
-                                return <br key={index} />;
-                            }
-
-                            // Regular paragraphs
-                            return <p key={index}>{line}</p>;
-                        })}
+                        <ReactMarkdown>{content}</ReactMarkdown>
                     </div>
                 </div>
 
